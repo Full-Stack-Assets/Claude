@@ -2,9 +2,9 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import type { AgentState } from '../src/agent/state';
 
-// Importing the graph pulls in the agent nodes, which construct the Gemini
+// Importing the graph pulls in the agent nodes, which construct the Claude
 // singleton; provide a dummy key so the import succeeds.
-process.env.GEMINI_API_KEY = 'test-key';
+process.env.ANTHROPIC_API_KEY = 'test-key';
 
 async function loadGraph() {
   return import('../src/agent/graph');

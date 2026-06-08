@@ -11,7 +11,7 @@ import { pingDatabase } from './db/prisma';
 // Fail fast with a clear message if required configuration is missing, rather
 // than crashing cryptically deep inside an API or DB call later.
 function validateEnv(): void {
-  const required = ['GEMINI_API_KEY', 'DATABASE_URL'];
+  const required = ['ANTHROPIC_API_KEY', 'DATABASE_URL'];
   const missing = required.filter((key) => !process.env[key]);
 
   if (missing.length > 0) {
