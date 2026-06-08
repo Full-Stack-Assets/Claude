@@ -1,6 +1,6 @@
 import { AIMessage, HumanMessage, ToolMessage } from '@langchain/core/messages';
 import { conversationService } from '../services/conversation.service';
-import { geminiService } from '../services/gemini.service';
+import { claudeService } from '../services/claude.service';
 import { mcpService } from '../services/mcp.service';
 import { webSearchService } from '../services/web-search.service';
 import { AgentState } from './state';
@@ -36,7 +36,7 @@ export async function userInputNode(
   }
 }
 
-// Model Node - Calls Gemini API to generate response and decide on tool usage
+// Model Node - Calls Claude API to generate response and decide on tool usage
 export async function modelNode(
   state: AgentState
 ): Promise<Partial<AgentState>> {
@@ -54,8 +54,8 @@ export async function modelNode(
     // Get working directory from metadata
     const workingDirectory = state.metadata?.workingDirectory || process.cwd();
 
-    // Generate response from Gemini
-    const response = await geminiService.generateResponse(
+    // Generate response from Claude
+    const response = await claudeService.generateResponse(
       state.messages,
       availableTools,
       workingDirectory
@@ -68,10 +68,11 @@ export async function modelNode(
       response.stop_reason === 'tool_use' &&
       response.function_calls.length > 0
     ) {
-      // Extract tool calls from Gemini response
+      // Extract tool calls from the model response. Prefer the provider-issued
+      // tool-use ID so it round-trips correctly on the matching tool result.
       const toolCalls: ToolCall[] = response.function_calls.map(
         (call, index) => ({
-          id: `call_${Date.now()}_${index}`,
+          id: call.id || `call_${Date.now()}_${index}`,
           type: 'function' as const,
           function: {
             name: call.name,

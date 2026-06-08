@@ -34,9 +34,11 @@ export interface ToolCall {
   };
 }
 
-// Normalized response returned by GeminiService.generateResponse.
+// Normalized response returned by the model service. The `id` on a function
+// call is the provider-issued tool-use ID and must be echoed back on the
+// matching tool result, so it is threaded through here.
 export interface ModelResponse {
   content: { type: 'text'; text: string }[];
-  function_calls: { name: string; args: Record<string, unknown> }[];
+  function_calls: { id?: string; name: string; args: Record<string, unknown> }[];
   stop_reason: 'tool_use' | 'end_turn';
 }

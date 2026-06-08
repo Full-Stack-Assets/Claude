@@ -1,10 +1,10 @@
 # Claude Code Assistant
 
-An AI-driven coding companion powered by Gemini, LangGraph, and MCP — built for developers who want an intelligent, context-aware terminal assistant.
+An AI-driven coding companion powered by Claude, LangGraph, and MCP — built for developers who want an intelligent, context-aware terminal assistant.
 
 ## 🎯 Features
 
-- **AI-Powered Assistance**: Leverages Gemini API (Gemini 2.5 Flash) for intelligent code understanding and generation
+- **AI-Powered Assistance**: Leverages the Claude API (Claude Opus 4.8) for intelligent code understanding and generation
 - **Tool Integration**: Connects to external tools via Model Context Protocol (MCP)
   - Filesystem operations (read, write, search files)
   - GitHub integration (with token support)
@@ -17,7 +17,7 @@ An AI-driven coding companion powered by Gemini, LangGraph, and MCP — built fo
 
 - Node.js 18+
 - PostgreSQL database
-- Gemini API key
+- Anthropic API key
 - (Optional) GitHub token for GitHub integration
 - (Optional) Tavily API key for web search (free, no credit card)
 
@@ -44,8 +44,8 @@ Create a `.env` file in the root directory:
 # Database
 DATABASE_URL="postgresql://user:password@localhost:5432/claude_code"
 
-# Gemini API
-GEMINI_API_KEY="your_gemini_api_key_here"
+# Anthropic API
+ANTHROPIC_API_KEY="your_anthropic_api_key_here"
 
 # Optional: GitHub Integration
 GITHUB_TOKEN="your_github_token_here"
@@ -106,7 +106,7 @@ claude-code/
 │   │   ├── nodes.ts     # Node implementations
 │   │   └── state.ts     # State schema
 │   ├── services/        # Business logic services
-│   │   ├── gemini.service.ts      # Gemini API integration
+│   │   ├── claude.service.ts      # Claude API integration
 │   │   ├── mcp.service.ts         # MCP server management
 │   │   └── conversation.service.ts # Database operations
 │   ├── cli/             # Command-line interface
@@ -226,7 +226,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 🙏 Acknowledgments
 
-- **Gemini API** by Google
+- **Claude API** by Anthropic
 - **LangGraph.js** for agent orchestration
 - **Model Context Protocol** for tool integration
 - **Prisma** for database management

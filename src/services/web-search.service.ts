@@ -57,7 +57,7 @@ export class WebSearchService {
       throw new Error(`Web search failed: ${errorObj.message}`);
     }
   }
-// Get web search tool definition for Gemini (MCP-compatible format)
+// Get web search tool definition (MCP-compatible format)
   getToolDefinition(): ToolDefinition {
     return {
       name: 'web_search',

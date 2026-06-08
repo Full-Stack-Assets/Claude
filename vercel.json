@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "buildCommand": "npx prisma generate",
+  "framework": null,
+  "functions": {
+    "api/*.ts": {
+      "maxDuration": 60
+    }
+  }
+}

@@ -26,7 +26,7 @@ export class MCPService {
     try {
       const client = new Client(
         {
-          name: `gemini-assistant-${name}`,
+          name: `claude-assistant-${name}`,
           version: '1.0.0',
         },
         {
